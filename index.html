@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ODI DMA</title>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<!-- Libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.3.0/d3.js"></script> -->
+	<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
+	<!-- <script src="//d3js.org/d3.v4.min.js"></script> -->
+	<!-- Scripts -->
+</head>
+
+<body>
+	<!-- <nav class="navbar navbar-light bg-dark">
+		<a class="navbar-brand" href="#">
+		    <img src="images/logo2.png"class="d-inline-block align-top" alt="">
+			<h2 class="d-inline-block align-center"> Donor Motivation Atlas</h2>
+		  </a>
+
+		<form class="form-inline">
+			<button class='btn btn-secondary'>Download the data</button>
+			<button class='btn btn-secondary'>Methodology</button>
+		</form>
+	</nav> -->
+	<div class="container-fluid">
+		<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+			<!-- MAIN CHART AREA -->
+		<div class='row'>
+			<div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+				<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h2 class='leading_text'>What is the Principled Aid Index?</h2><br />
+						<p class=''>ODI’s Principled Aid (PA) Index ranks 29 bilateral donors of the Development Assistance Committee (DAC) according to the extent to which they use their official development assistance (ODA) to pursue their long term national interest in a prosperous, stable and secure world.  Donors with a more principled approach to their national interest have higher scores.   For more information, please see the methodology and briefing note below.</p><br />
+							<br /><h2>How to use this tool</h2><br />
+						<p>This tool allows users to explore the rank itself, along with other useful data to put these findings in context. For more details on the indicators and aggregation method used, and for 2017 highlights, explore the technical note and briefing note via the links at the bottom of this page. </p><br />
+						<p>
+							Click the toggles below to view donor performance against each dimension of a principled approach to aid in the national interest and to explore the relationship between the Principled Aid Index rankings and aid quantity (ODA as a percentage of gross national income). Users can also select a country to see changes in donor performance over time.
+						</p><br />
+					</div> -->
+					<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'  id = 'key_stories'>
+						<div class = 'row' id = 'key_stories'>
+							<!-- <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' id = 'legend' > -->
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<h5>Show data <br>disaggregated by principle</h5>
+								<p>Off &nbsp; &nbsp; &nbsp;On</p>
+								<label class="switch ">
+								  <input type="checkbox" class='chart_switch'>
+								  <span class="slider round"></span>
+								</label>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<h5> Show aid <br>quantity (ODA/GNI)</h5>
+								<p>Off &nbsp; &nbsp; &nbsp;On</p>
+								<label class="switch ">
+								  <input type="checkbox" class='aid_quantity switch_aid_quantity'>
+								  <span class="slider round"></span>
+								</label>
+								<!-- <button type="button" class="btn btn-secondary" id ='key_story_01'>Key Story 01</button> -->
+							</div>
+							<!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<h5> Show aid <br>quality (QuODA)</h5>
+								<p>Off &nbsp; &nbsp; &nbsp;On</p>
+								<label class="switch ">
+								  <input type="checkbox" class='aid_quality'>
+								  <span class="slider round"></span>
+								</label>
+								<button type="button" class="btn btn-secondary" id ='key_story_02'>Key Story 02</button> -->
+							<!-- </div> -->
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<h5>Return to <br> overview</h5>
+								<h1 id = 'refresh_button'><i class="fas fa-sync-alt"></i></h1>
+							</div>
+						</div>
+						</br>
+							<!-- <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' id = '#subcomponentsLegend' > -->
+
+
+
+								<!-- <div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class='legend_rect' id ='needs'></div><p> Needs</p>
+											<i tabindex="0" trigger='hover focus click' data-toggle="tooltip" data-placement="top" title="Aid is allocated to countries that address critical development needs and vulnerabilities" class="far fa-question-circle"></i>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class='legend_rect' id ='global_system'></div><p> Global cooperation</p>
+											<i tabindex="0"  trigger='hover focus click' data-toggle="tooltip" data-placement="top" title="Aid is allocated to channels and activities that facilitate and support global cooperation" class="far fa-question-circle"></i>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class='legend_rect' id ='public_spirited'></div><p> Public spiritedness</p>
+											<i tabindex="0"  trigger='hover focus click' data-toggle="tooltip" data-placement="top" title="Aid is allocated to maximize every opportunity to achieve development impact, with narrower domestic gains always a secondary and indirect consequence" class="far fa-question-circle"></i>
+										</div>
+								</div>
+								<hr> -->
+
+
+
+
+							<!-- </div> -->
+						</div>
+					<!-- </div> -->
+
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chart_container">
+					<div class='row' id = 'main_chart_label_row'>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class='vertical_align_bottom'>
+								<!-- <h3 class='main_chart_label principled_aid_rank_label'>Principled aid rank</h3> -->
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 rank_switch_div">
+							<p class='rank_toggle_label' id = 'rank_toggle_label_text'>   </p>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 stacked_chart_low_score_label">
+							<!-- <div class='vertical_align_bottom'> -->
+								<!-- <p class='key_story_axis_label'></p> -->
+								<p class='key_story_axis_label_low'></p>
+							<!-- </div> -->
+						</div>
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 stacked_chart_high_score_label">
+							<!-- <div class='vertical_align_bottom'> -->
+								<!-- <p class='key_story_axis_label'></p> -->
+								<p class='key_story_axis_label_high'>Score /30</p>
+							<!-- </div> -->
+						</div>
+					</div>
+					<div class="scatterPlotDiv col-lg-12 col-md-12 col-sm-12 col-xs-12" id = 'scatterPlotDiv'></div>
+					<div class='row' id = 'main_chart_label_row'>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 stacked_chart_unprincipled_label">
+							<!-- <h3 class='main_chart_label'>Unprincipled aid</h3> -->
+						</div>
+					</div>
+					<div id = 'key_story_tooltip' class='key_story_hover_text'></div>
+				</div>
+				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' id = 'traffic_light_legend' >
+					<div class="row">
+							<!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='green_legend'></div><p>Highly principled aid</p>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='amber_legend'></div><p>Average principled aid</p>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='red_legend'></div><p>Limited principled aid</p>
+							</div> -->
+
+
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="legend_rect" id ="needs"></div><p> Development gaps  </p>
+								<div class="legend_tooltip"><i class="far fa-question-circle"></i><span class="legend_tooltip_text">Aid is allocated to address critical development vulnerabilities and inequalities.</span></div>
+								</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="legend_rect" id ="global_system"></div><p> Global cooperation  </p>
+								<div class="legend_tooltip"><i class="far fa-question-circle"></i><span class="legend_tooltip_text">Aid is allocated to channels and activities that address shared global challenges.</span></div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="legend_rect" id ="public_spirited"></div><p> Public spiritedness  </p>
+								<div class="legend_tooltip"><i class="far fa-question-circle"></i><span class="legend_tooltip_text">Aid is allocated to maximize every opportunity to achieve development impact, with narrower domestic gains an indirect consequence.</span></div>
+							</div>
+
+
+					</div>
+				</div>
+			</div>
+
+			<!-- COUNTRY PROFILE  -->
+			<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12" id='sidebar'>
+				<div class="sidebarContent">
+					<div class="countryBar col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class = 'row'>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 country_bar_title">
+									<h2 id="countryBarText"></h2>
+								</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id='rank_text'></div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id='position_change_text'></div>
+						</div>
+					</div>
+					<div class="countryProfileBarCharts col-lg-12 col-md-12 col-sm-12 col-xs-12" id="">
+						<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" id='aboutsidebarText'>
+						</div>
+						<!-- <h3>Principled Aid Rank <span id="current_year_span">2018</span></h3> -->
+						<!-- <div id = 'sidebar_legend'  class="row">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='needs'></div><p> Needs</p>
+								<i  data-toggle="tooltip" data-placement="top" title="Aid is allocated to countries that address critical development needs and vulnerabilities" class="far fa-question-circle"></i>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='global_system'></div><p> Global Cooperation</p>
+								<i data-toggle="tooltip" data-placement="top" title="Aid is allocated to channels and activities that facilitate and support global cooperation" class="far fa-question-circle"></i>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class='legend_rect' id ='public_spirited'></div><p> Public Spiritedness</p>
+								<i data-toggle="tooltip" data-placement="top" title="Aid is allocated to maximize every opportunity to achieve development impact, with narrower domestic gains always a secondary and indirect consequence" class="far fa-question-circle"></i>
+							</div>
+						</div> -->
+						<div class='row countryProfileBarChartsYearToggle' id ='' >
+							<p>Explore country data by year</p>
+							<div class="btn-group" id = "country_profile_buttons" role="group" aria-label="">
+							  <!-- <button type="button" id = 'year_2013' class="btn btn-secondary year_switch">2013</button>
+							  <button type="button" id = 'year_2014' class="btn btn-secondary year_switch">2014</button>
+							  <button type="button" id = 'year_2015' class="btn btn-secondary year_switch">2015</button>
+							  <button type="button" id = 'year_2016' class="btn btn-secondary year_switch">2016</button>
+							  <button type="button" id = 'year_2017' class="btn btn-secondary year_switch">2017</button>
+							  <button type="button" id = 'year_2018' class="btn btn-secondary year_switch active">2018</button> -->
+
+							</div>
+						</div>
+						<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' id = 'sidebar_rowcharts'>
+							<div class='row'>
+								<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+									<h3 class="barChartTitle overall">Overall</h3>
+								</br>
+									<!-- <p class = 'row_chart_labels'>Principled</p> -->
+									<div id="global_row_chart"  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								</div>
+								<!-- <p class = 'row_chart_labels'>Unprincipled</p> -->
+							</div>
+								<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+									<h3 class="barChartTitle needs">Development gaps</h3>
+									</br>
+									<!-- <p class = 'row_chart_labels'>Most needs-focused</p> -->
+									<div id="needs_row_chart" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								</div>
+								<!-- <p class = 'row_chart_labels'>Least needs-focused</p> -->
+							</div>
+								<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+									<h3 class="barChartTitle global_system">Global <br>cooperation</h3>
+									</br>
+									<!-- <p class = 'row_chart_labels'>High global cooperation</p> -->
+									<div class="rowChart col-lg-12 col-md-12 col-sm-12 col-xs-12" id="global_system_row_chart">
+								</div>
+								</br>
+								<!-- <p class = 'row_chart_labels'>Low global cooperation</p> -->
+							</div>
+								<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+								<h3 class="barChartTitle public_spirited">Public <br>spiritedness</h3>
+								</br>
+								<!-- <p class = 'row_chart_labels'>Most public spirited</p> -->
+								<div id="public_spirited_row_chart"  class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+								<!-- <p class = 'row_chart_labels'>Least public spirited</p> -->
+							</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<br /><h2 id="titleBelowCharts">Overview</h2>
+					</div> -->
+				<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" id='countryText'>
+				</div>
+				</div>
+				<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  id = 'sidebar_footer'>
+						<div class='row'>
+							<div class="btn-group" role="group" aria-label="">
+								<div class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">About</div>
+								<div class="btn btn-secondary">Briefing Note</div>
+								<div class="btn btn-secondary ">Methodology</div>
+								<div class="btn btn-secondary">Data</div>
+								<div class="btn btn-secondary"><a href="mailto:odi@odi.org?subject=Principled Aid Index">Get in touch</a></div>
+							</div>
+						</div>
+					</div> -->
+			</div>
+		</div>
+	</div>
+
+		<!-- Modal -->
+		<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				  	<h2 class="modal-title" id="exampleModalLabel">What is ODI's Principled Aid Index?</h2><br>
+
+		        	<p>	OD’s Principled Aid Index (PA Index) measures how far Development Assistance Committee (DAC) donor efforts advance an approach to the national interest that serves their own interests as well as those of the world at large. A principled aid allocation services long-term donor interests in a safer, stable and more equitable world and avoids exploiting aid to secure narrow commercial or geopolitical objectives.</p><br>
+					<p>Watch the video to find out more.<br><br></p>
+					<div class='col-sm-12 col-md-12 col-lg-12 video_content'>
+						<iframe src="https://www.youtube.com/embed/iznwgLAE9oU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+			  </div>
+		      <div class="modal-footer">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div> -->
+
+	</div>
+
+</body>
+<script type="text/javascript" src="js/config.js"></script>
+
+<script type="text/javascript" src="js/scripts.min.js"></script>
+<!-- <script>
+$( document ).ready(function() {
+    var pymChild = new pym.Child();
+	pymChild.sendHeight();
+});
+</script> -->
+</html>
