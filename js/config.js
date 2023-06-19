@@ -2,6 +2,7 @@ console.log('loading config')
 
 ////update here to amend the current year
 var current_year_configured = "2021";
+var text_year = '2023';
 
 // $('.current_year_text')
 
